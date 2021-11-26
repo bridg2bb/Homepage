@@ -6,10 +6,9 @@ body
   display: grid;
   align-content: center;
   grid-template-columns: 100%;
-  overflow-y: hidden;
-  overflow-x: hidden;
   background-color: #171010;
   color: #fff;
+  overflow-y: scroll;
 }
 
 a {
@@ -20,6 +19,8 @@ a {
 
 ul {
     list-style: none; 
+    margin-left: 15px;
+    padding-inline-start: 10px;
 }
   
 ul li::before {
@@ -29,6 +30,25 @@ ul li::before {
     display: inline-block; 
     width: 1em; 
     margin-left: -1em; 
+}
+ul li ul
+{
+    list-style: none; 
+}
+ul li ul li::before
+{
+    content: "-";  
+    color: #fff; 
+    font-weight: bold; 
+    display: inline-block; 
+    width: 1em; 
+    margin-left: -1em; 
+}
+
+.navigation
+{
+    grid-column: 1;
+    grid-row: 1;
 }
 
 
@@ -55,7 +75,8 @@ ul li::before {
 }
 
 
-.col-wide, .col-x-wide, .col-full
+
+.col-wide, .col-x-wide, .col-full, .col-sm-full
 {
     grid-column: 1 / span 4;
 }
@@ -69,12 +90,17 @@ ul li::before {
     border-radius: 5px;
     background-color: #423F3E;
     padding: 5px;
+    margin-bottom: 5px;
 }
 
 
 /* Large view */
 @media screen and (min-width: 900px) 
 {
+    .col-sm-full
+    {
+        grid-column: inherit;
+    }
 
     .col-wide 
     {
