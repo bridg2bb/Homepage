@@ -49,10 +49,13 @@ ul li ul li::before
 {
     grid-column: 1;
     grid-row: 1;
+    position: absolute;
+    z-index: 50;
 }
 
 
 .main-wrapper { 
+    position: relative;
     display:grid;
     grid-template-columns: repeat(4, calc(25% - 5px));
     padding-left: 5px;
