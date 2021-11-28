@@ -8,80 +8,57 @@ body
   grid-template-columns: 100%;
   background-color: #171010;
   color: #fff;
-  overflow-y: scroll;
 }
+
+body.light 
+{
+    color: #171010;
+    background-color: rgb(241, 243, 244);
+}
+
 
 a {
     color: goldenrod;
     text-decoration: none;
 }
 
-
-ul {
-    list-style: none; 
-    margin-left: 15px;
-    padding-inline-start: 10px;
-}
-  
-ul li::before {
-    content: "\2022";  
-    color: #fff; 
-    font-weight: bold; 
-    display: inline-block; 
-    width: 1em; 
-    margin-left: -1em; 
-}
-ul li ul
+body.light a 
 {
-    list-style: none; 
+    color: #0071BC;
 }
-ul li ul li::before
-{
-    content: "-";  
-    color: #fff; 
-    font-weight: bold; 
-    display: inline-block; 
-    width: 1em; 
-    margin-left: -1em; 
-}
-
-.navigation
-{
-    grid-column: 1;
-    grid-row: 1;
-    position: absolute;
-    z-index: 50;
-}
-
 
 .main-wrapper { 
     position: relative;
     display:grid;
     grid-template-columns: repeat(4, calc(25% - 5px));
+    grid-template-rows: 1fr;
     padding-left: 5px;
     padding-top: 5px;
     grid-column-gap: 5px;
     grid-row-gap: 5px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    margin-top: 35px;
 }
 
 .col-2
 {
-    grid-column: 1 / span 2;
+    grid-column: span 2;
 }
 .col-3
 {
-    grid-column: 1 / span 3;
+    grid-column: span 3;
 }
 .col-4
 {
-    grid-column: 1 / span 4;
+    grid-column: span 4;
 }
 
 
 
 .col-wide, .col-x-wide, .col-full, .col-sm-full
 {
-    grid-column: 1 / span 4;
+    grid-column: span 4;
 }
 
 
@@ -91,15 +68,165 @@ ul li ul li::before
 {
     border: 1px solid #333;
     border-radius: 5px;
-    background-color: #423F3E;
+    background-color: #37474f;
     padding: 5px;
     margin-bottom: 5px;
 }
+
+body.light .content-section
+{
+
+    background-color: #DEE4E7;
+}
+
+
+
+#navigation {
+    position: fixed;
+    margin-left: 10px;
+    margin-top: 8px;
+    z-index: 999;
+    transform-origin: top left;
+    overflow: hidden;
+    width: 30px;
+    height: 30px;
+    align-content: center;
+    border-radius: 3px;
+    transition: height .5s, width .5s, background .5s;
+
+}
+#navigation.expanded 
+{
+
+    width: 250px;
+    height: 280px;;
+    overflow-y: scroll;
+    background-color: rgb(241, 243, 244);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4);
+    border: 1px solid #333;
+
+}
+
+#btnExpandNav 
+{
+    display: block;
+    padding: 0px;
+    height: 30px;
+    width: 30px;
+    border: 0px;
+    border-radius: 50%;
+    background-color: #171010;
+    color: rgb(241, 243, 244);
+}
+
+body.light #btnExpandNav 
+{
+    color: #171010;
+    background-color: rgb(241, 243, 244);
+}
+#navigation.expanded #btnExpandNav
+{
+    padding-left: 5px;
+    border-bottom: 1px solid #333;
+    background-color: rgb(241, 243, 244);
+    border-radius: 0px;
+    width: 250px;
+    color: black;
+    text-align: left;
+    transition: none;
+    position: fixed;
+}
+
+#navigation.expanded #btnExpandNav i::after
+{
+    content: ' Close Nav';
+    font-family: inherit;
+}
+
+
+#btnToggleMode
+{
+    border: 0px;
+    color: #171010;
+    background-color: rgb(241, 243, 244);
+    display: inline;
+    border-bottom: 2px solid #333;
+    width: 100%;
+    padding: 2px;
+    text-align: left;
+
+}
+body.light #btnToggleMode
+{   
+    background-color: #171010;  
+    color: rgb(241, 243, 244); 
+}
+
+
+#btnToggleMode i
+{
+    font-size: large;
+}
+
+
+ 
+#menu
+{
+    list-style: none; 
+    padding: 0;
+    margin: 0;
+    margin-top: 30px;
+    width: 250px;
+}
+
+
+#menu li a
+{
+    color:#171010;
+    padding: 2px 2px 2px 10px;
+    border-bottom: 2px solid #333;
+    display: block;
+    font-weight: bold;
+} 
+
+#menu li a:hover, #btnToggleMode:hover,#navigation.expanded #btnExpandNav:hover
+{
+    color: rgb(241, 243, 244);
+    background-color: #333;
+
+}
+#menu li ul
+{
+    padding-inline-start: 0px;
+}
+#menu li ul li a
+{
+    font-weight: normal;
+    padding-left: 15px;
+    border-bottom: 1px solid #666;
+}
+
+
+
+#menu li ul
+{
+    list-style: none; 
+    padding: 0px;
+}
+  
+.content-section .code-section 
+{
+    background-color: #fff;
+    overflow: scroll;
+}
+
+
 
 
 /* Large view */
 @media screen and (min-width: 900px) 
 {
+  
     .col-sm-full
     {
         grid-column: inherit;
@@ -107,14 +234,126 @@ ul li ul li::before
 
     .col-wide 
     {
-        grid-column: 1 / span 2;
+        grid-column:  span 2;
     }
     .col-x-wide 
     {
-        grid-column: 1 / span 3;
+        grid-column: span 3;
     }
     .col-x-full 
     {
-        grid-column: 1 / span 4;
+        grid-column: span 4;
     }
+  
+    #navigation
+    {
+        position: fixed;
+        min-height: 35px;
+        width: 100vw;
+        border: 1px solid #333;
+        margin: 0px;
+        background-color: #37474f;
+        border-radius: 0%;
+        padding: 0px;
+    }
+    body.light #navigation
+    {
+        background-color: #DEE4E7;
+        color: #171010;
+    }
+    #btnExpandNav
+    {
+        display: none;
+    }
+    #menu 
+    {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        width: 100vw;
+    }
+    #menu .nav-header 
+    {
+        position: relative;
+        display: inline-block;
+    }
+    #menu .nav-header a
+    {
+        display: block;
+        border: 1px solid black;
+        color: white;
+        text-align: center;
+        padding: 5px;
+        text-decoration: none;
+    }
+    body.light #menu .nav-header a
+    {
+        color: #171010;
+    }
+    #menu .nav-header ul {
+        display: none;
+        position: fixed;
+        z-index: 999;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    }
+    #menu .nav-child 
+    {
+        background-color: #666;
+    }
+
+    body.light #menu .nav-child 
+    {
+        background-color:  rgb(241, 243, 244);
+        color: #171010;
+    }
+
+    #menu .nav-header:hover ul
+    {
+        display: block;
+    }
+    #menu .nav-header:last-child
+    {
+        position: absolute;
+        top: 2px;
+        right: 16px;
+    }
+    
+
+    #menu li a:hover, #btnToggleMode:hover,#navigation.expanded #btnExpandNav:hover
+    {
+        color:rgb(241, 243, 244);
+    }
+
+    
+    body.light #menu li a:hover, body.light #btnToggleMode:hover,body.light #navigation.expanded #btnExpandNav:hover
+    {
+        background-color: #666;
+        color:rgb(241, 243, 244);
+    }
+
+
+
+    #btnToggleMode
+    {
+        border: 0;
+        border-radius: 5px;
+        line-height: inherit;
+        background-color: rgb(241, 243, 244);
+        color:#171010;
+        padding: 5px;
+        margin: 0;
+        text-align: left;
+        display: block;
+        font-weight: bold;
+        box-sizing: unset;
+
+    }
+    body.light #btnToggleMode
+    {   
+        background-color: #171010;  
+        color: rgb(241, 243, 244); 
+    }
+
 }
